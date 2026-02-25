@@ -91,13 +91,14 @@
                                     <tr>
                                         <th>Nama Siswa</th>
                                         <th>Kelas</th>
+                                        <th>Jurusan</th>
                                         <th>Nomor Kendaraan</th>
                                         <th>Jenis</th>
                                         <th>Jam Masuk</th>
                                     </tr>
                                 </thead>
                                 <tbody id="recentTableBody">
-                                    <tr><td colspan="5" style="text-align: center;">Memuat data...</td></tr>
+                                    <tr><td colspan="6" style="text-align: center;">Memuat data...</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -111,13 +112,14 @@
                                     <tr>
                                         <th>Nama Siswa</th>
                                         <th>Kelas</th>
+                                        <th>Jurusan</th>
                                         <th>Nomor Kendaraan</th>
                                         <th>Jenis</th>
                                         <th>Jam Keluar</th>
                                     </tr>
                                 </thead>
                                 <tbody id="recentExitTableBody">
-                                    <tr><td colspan="5" style="text-align: center;">Memuat data...</td></tr>
+                                    <tr><td colspan="6" style="text-align: center;">Memuat data...</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -135,7 +137,12 @@
 
                             <div class="form-group">
                                 <label for="kelas">Kelas:</label>
-                                <input type="text" id="kelas" name="kelas" placeholder="Contoh: XII RPL 1" required>
+                                <select id="kelas" name="kelas" required>
+                                    <option value="">-- Pilih Kelas --</option>
+                                    <option value="X">X</option>
+                                    <option value="XI">XI</option>
+                                    <option value="XII">XII</option>
+                                </select>
                             </div>
 
                             <div class="form-group">

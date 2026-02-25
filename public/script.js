@@ -104,7 +104,7 @@ function displayRecentData() {
     const tbody = document.getElementById('recentTableBody');
     
     if (recentData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Tidak ada data kendaraan masuk terbaru</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Tidak ada data kendaraan masuk terbaru</td></tr>';
         return;
     }
     
@@ -115,6 +115,7 @@ function displayRecentData() {
             <tr>
                 <td>${item.nama_siswa}</td>
                 <td>${item.kelas}</td>
+                <td>${item.jurusan}</td>
                 <td>${item.nomor_kendaraan}</td>
                 <td>${item.jenis_kendaraan}</td>
                 <td>${jamMasuk}</td>
@@ -134,7 +135,7 @@ function displayRecentExitData() {
     const tbody = document.getElementById('recentExitTableBody');
     
     if (recentExitData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Tidak ada data kendaraan keluar terbaru</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Tidak ada data kendaraan keluar terbaru</td></tr>';
         return;
     }
     
@@ -145,6 +146,7 @@ function displayRecentExitData() {
             <tr>
                 <td>${item.nama_siswa}</td>
                 <td>${item.kelas}</td>
+                <td>${item.jurusan}</td>
                 <td>${item.nomor_kendaraan}</td>
                 <td>${item.jenis_kendaraan}</td>
                 <td>${jamKeluar}</td>

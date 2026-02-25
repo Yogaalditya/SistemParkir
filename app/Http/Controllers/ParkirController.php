@@ -76,7 +76,7 @@ class ParkirController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_siswa' => 'required|string|max:100',
-            'kelas' => 'required|string|max:20',
+            'kelas' => 'required|string|in:X,XI,XII',
             'jurusan' => 'required|string',
             'nomor_kendaraan' => 'required|string|max:20',
             'jenis_kendaraan' => 'required|string|in:Motor,Mobil,Sepeda',
