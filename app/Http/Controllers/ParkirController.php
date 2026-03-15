@@ -116,7 +116,7 @@ class ParkirController extends Controller
                     ->where('jurusan', $payload['jurusan'])
                     ->first();
 
-                if (!$siswa) {
+                if (! $siswa) {
                     $siswa = Siswa::create([
                         'nama_siswa' => $payload['nama_siswa'],
                         'kelas' => $payload['kelas'],
@@ -126,7 +126,7 @@ class ParkirController extends Controller
 
                 $kendaraan = Kendaraan::where('nomor_kendaraan', $nomorKendaraan)->first();
 
-                if (!$kendaraan) {
+                if (! $kendaraan) {
                     $kendaraan = Kendaraan::create([
                         'siswa_id' => $siswa->id,
                         'nomor_kendaraan' => $nomorKendaraan,
@@ -152,7 +152,7 @@ class ParkirController extends Controller
     {
         $id = $request->input('id');
 
-        if (!$id) {
+        if (! $id) {
             return response()->json(['success' => false, 'message' => 'ID tidak ditemukan']);
         }
 
@@ -173,7 +173,7 @@ class ParkirController extends Controller
     {
         $id = $request->input('id');
 
-        if (!$id) {
+        if (! $id) {
             return response()->json(['success' => false, 'message' => 'ID tidak ditemukan']);
         }
 
