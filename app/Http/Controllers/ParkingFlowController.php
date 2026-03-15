@@ -12,6 +12,20 @@ use Illuminate\View\View;
 
 class ParkingFlowController extends Controller
 {
+    public function scanByUser(Request $request): View
+    {
+        $user = $request->user();
+
+        if (! $user || $user->isAdmin()) {
+            return view('parking.invalid');
+        }
+
+        return view('parking.payment', [
+            'user' => $user,
+            'session' => $this->getOrCreateActiveSession($user),
+        ]);
+    }
+
     public function scan(string $token): View
     {
         $user = User::where('qr_token', $token)
@@ -22,24 +36,9 @@ class ParkingFlowController extends Controller
             return view('parking.invalid');
         }
 
-        $session = $user->parkingSessions()
-            ->whereNull('checked_out_at')
-            ->latest('checked_in_at')
-            ->first();
-
-        if (! $session) {
-            $session = ParkingSession::create([
-                'user_id' => $user->id,
-                'public_token' => (string) Str::uuid(),
-                'checked_in_at' => now(),
-                'base_fee' => 2000,
-                'payment_status' => 'pending',
-            ]);
-        }
-
         return view('parking.payment', [
             'user' => $user,
-            'session' => $session,
+            'session' => $this->getOrCreateActiveSession($user),
         ]);
     }
 
@@ -105,5 +104,25 @@ class ParkingFlowController extends Controller
         ]);
 
         return back()->with('status', 'Anda sudah keluar dari area parkir sekolah.');
+    }
+
+    private function getOrCreateActiveSession(User $user): ParkingSession
+    {
+        $session = $user->parkingSessions()
+            ->whereNull('checked_out_at')
+            ->latest('checked_in_at')
+            ->first();
+
+        if ($session) {
+            return $session;
+        }
+
+        return ParkingSession::create([
+            'user_id' => $user->id,
+            'public_token' => (string) Str::uuid(),
+            'checked_in_at' => now(),
+            'base_fee' => 2000,
+            'payment_status' => 'pending',
+        ]);
     }
 }

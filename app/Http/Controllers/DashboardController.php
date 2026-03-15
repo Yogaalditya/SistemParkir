@@ -42,6 +42,11 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function qrCode(): View
+    {
+        return view('admin.qrcode');
+    }
+
     public function confirmCash(ParkingSession $session): RedirectResponse
     {
         if ($session->payment_status !== 'awaiting_admin_confirmation') {

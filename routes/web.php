@@ -28,10 +28,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'user'])->name('user.dashboard');
+    Route::get('/scan', [ParkingFlowController::class, 'scanByUser'])->name('parking.scan-user');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/admin/qr-code', [DashboardController::class, 'qrCode'])->name('admin.qr-code');
     Route::post('/admin/sessions/{session}/confirm-cash', [DashboardController::class, 'confirmCash'])->name('admin.confirm-cash');
 });
 

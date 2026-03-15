@@ -36,10 +36,10 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->isAdmin()) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->intended(route('admin.dashboard'));
         }
 
-        return redirect()->route('user.dashboard');
+        return redirect()->intended(route('user.dashboard'));
     }
 
     public function showRegister(): View
@@ -54,13 +54,13 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:150'],
             'kelas' => ['required', 'string', Rule::in(['X', 'XI', 'XII'])],
             'jurusan' => ['required', 'string', Rule::in([
-                'Rekayasa Perangkat Lunak', 
-                'Kecantikan', 
-                'Tata Boga', 
-                'Seni Musik', 
-                'Usaha Layanan Wisata', 
-                'Busana', 
-                'Perhotelan'
+                'Rekayasa Perangkat Lunak',
+                'Kecantikan',
+                'Tata Boga',
+                'Seni Musik',
+                'Usaha Layanan Wisata',
+                'Busana',
+                'Perhotelan',
             ])],
             'nomor_kendaraan' => ['required', 'string', 'max:20', Rule::unique('users', 'nomor_kendaraan')],
             'jenis_kendaraan' => ['required', 'string', Rule::in(['Motor', 'Mobil', 'Sepeda'])],
